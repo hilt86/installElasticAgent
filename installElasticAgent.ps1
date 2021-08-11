@@ -20,7 +20,7 @@ Start-Process -FilePath $exeFile -ArgumentList "install","-f","--url=$fleetUrl",
 New-Item -Path 'HKLM:\Software\ElasticVersion' -ErrorAction SilentlyContinue
 New-ItemProperty -Path 'HKLM:\Software\ElasticVersion' -Name "version" -Value 2 -Force -ErrorAction SilentlyContinue
 }
-elseif ($deploymentVersion -eq 1)
+elseif ($deploymentVersion -eq 2)
 {
 write-host 'deployment is current, skipping'
 }
