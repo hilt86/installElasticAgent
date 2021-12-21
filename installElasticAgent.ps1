@@ -1,5 +1,5 @@
 
-$AgentURL = 'https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-7.13.4-windows-x86_64.zip'
+$AgentURL = 'https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-7.15.2-windows-x86_64.zip'
 $enrollmentToken = 'somethingsecret'
 $fleetUrl = 'https://somethingsomething.fleet.eastus2.azure.elastic-cloud.com:443'
 $deploymentVersion = Get-ItemProperty 'HKLM:\Software\ElasticVersion'-ErrorAction SilentlyContinue |  Select-Object -ExpandProperty version -ErrorAction SilentlyContinue
@@ -18,10 +18,10 @@ If ($deploymentVersion -lt $currentversion)
     $zipFile = $tempDir + "\" + "elastic-agent.zip"
 
     write-host $zipFile
-    Start-BitsTransfer -Source "https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-7.13.4-windows-x86_64.zip" -Destination $zipFile
+    Start-BitsTransfer -Source "https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-7.15.2-windows-x86_64.zip" -Destination $zipFile
     Expand-Archive -LiteralPath $zipFile -DestinationPath $tempDir
 
-    $exeFile = $tempDir + "\" + "elastic-agent-7.13.4-windows-x86_64" + "\" + "elastic-agent.exe"
+    $exeFile = $tempDir + "\" + "elastic-agent-7.15.2-windows-x86_64" + "\" + "elastic-agent.exe"
 
     Start-Process -FilePath $exeFile -ArgumentList "install","-f","--url=$fleetUrl","--enrollment-token=$enrollmentToken"
     New-Item -Path 'HKLM:\Software\ElasticVersion' -ErrorAction SilentlyContinue
