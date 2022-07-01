@@ -1,4 +1,4 @@
-$AgentURL = 'https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-7.17.2-windows-x86_64.zip'
+$AgentURL = 'https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-8.2.3-windows-x86_64.zip'
 # Fill these in before running
 $enrollmentToken = ''
 $fleetUrl = ''
@@ -14,10 +14,10 @@ If ($elasticRunning -eq $null)
     mkdir $tempDir
     $zipFile = $tempDir + "\" + "elastic-agent.zip"
     write-host $zipFile
-    Start-BitsTransfer -Source "https://artifacts.elastic.co/downloads/beats/elastic-agent/elastic-agent-7.17.2-windows-x86_64.zip" -Destination $zipFile
+    Start-BitsTransfer -Source $AgentURL -Destination $zipFile
     Expand-Archive -LiteralPath $zipFile -DestinationPath $tempDir
 
-    $exeFile = $tempDir + "\" + "elastic-agent-7.17.2-windows-x86_64" + "\" + "elastic-agent.exe"
+    $exeFile = $tempDir + "\" + "elastic-agent-8.2.3-windows-x86_64" + "\" + "elastic-agent.exe"
 
     Start-Process -FilePath $exeFile -ArgumentList "install","-f","--url=$fleetUrl","--enrollment-token=$enrollmentToken"
 }
